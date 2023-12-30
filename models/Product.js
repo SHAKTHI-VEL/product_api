@@ -24,7 +24,7 @@ const productSchema=new Schema({
     },
     createdAt:{
         type:Date,
-        required:true
+        default:Date.now
     },
     company:{
         type:String,
