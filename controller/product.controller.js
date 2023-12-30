@@ -3,8 +3,8 @@ const Product=require('../models/Product')
 const addProduct=async(req,res)=>{
     try {
         const product=new Product(req.body)
-        await product.save()
-        return res.status(200).json({success:true,message:"New product added"})
+        const savedProduct=await product.save()
+        return res.status(200).json({success:true,savedProduct,message:"New product added"})
     } catch (error) {
         return res.status(500).send({success:false,message: 'Internal server error' });
     }
@@ -30,7 +30,7 @@ const updateProduct=async(req,res)=>{
         const {productId,name,price,featured,rating,company,createdAt}=req.body
         
         let product=await Product.updateOne({productId:prodId},{$set:{productId,name,price,featured,rating,company,createdAt}},{new:true})
-        return res.status(200).json({success:true,message: 'Product Updated Successfully'});
+        return res.status(200).json({success:true,product,message: 'Product Updated Successfully'});
     } catch (error) {
         return res.status(500).send({success:false,message: 'Internal server error'});
     }
