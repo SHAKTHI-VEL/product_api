@@ -66,4 +66,17 @@ const moreRating=async(req,res)=>{
     }
 }
 
-module.exports={addProduct,getProduct,updateProduct,featuredProduct,lessPrice,moreRating}
+const deleteProduct=async(req,res)=>{
+    try {
+        const prodId=req.params.id
+        if(!(await Product.findOne({productId:prodId}))){
+            return res.status(400).json({success:false,message: 'Item not found'})
+        }
+        await Product.deleteOne({productId:prodId})
+        return res.status(200).json({success:true,message: 'Product Deleted Successfully'});
+    } catch (error) {
+        return res.status(500).send({success:false,message: 'Internal server error'});
+    }
+}
+
+module.exports={addProduct,getProduct,updateProduct,featuredProduct,lessPrice,moreRating,deleteProduct}
