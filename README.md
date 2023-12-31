@@ -74,7 +74,7 @@ An API so that only authenticated users are allowed to perform CRUD operations o
     /product/:productId
     ``` 
 
-8.  Update a product [METHOD:-DELETE] :-
+8.  DELETE a product [METHOD:-DELETE] :-
     ```
     /product/:productId
     ``` 
